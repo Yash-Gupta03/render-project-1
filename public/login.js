@@ -14,7 +14,7 @@ async function logindata(e) {
   };
   // Post request to the server to store user details
   try{
-  const response = await axios.post("http://localhost:3000/user/login", obj)
+  const response = await axios.post("https://finance-tracker-6m0j.onrender.com/user/login", obj)
       if (response.status == 200) {
         alert(response.data.message);
         localStorage.setItem("id", response.data.token);

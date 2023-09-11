@@ -1,6 +1,6 @@
 async function getReport(){
     const token = localStorage.getItem("id");
-    const res = await axios.get(`http://localhost:3000/expense/get-report`, {
+    const res = await axios.get(`https://finance-tracker-6m0j.onrender.com/expense/get-report`, {
       headers: { Authorization: token },
     });
     // clearList('table-body');

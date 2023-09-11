@@ -18,7 +18,7 @@ async function expensedata(e) {
   // Post request to the server to store user details
   const token = localStorage.getItem("id");
   try{
-  const response = await axios.post("http://localhost:3000/expense/add-expense", obj, {
+  const response = await axios.post("https://finance-tracker-6m0j.onrender.com/expense/add-expense", obj, {
       headers: { Authorization: token },
     })
       if (response.status == 200) {
@@ -57,7 +57,7 @@ async function getExpense(page){
   const limit = document.getElementById('pagesize').value;
     localStorage.setItem('rowLimit', limit);
     console.log(limit);
-  const res = await axios.get(`http://localhost:3000/expense/get-expense?page=${page}&limit=${localStorage.getItem('rowLimit')}`, {
+  const res = await axios.get(`https://finance-tracker-6m0j.onrender.com/expense/get-expense?page=${page}&limit=${localStorage.getItem('rowLimit')}`, {
     headers: { Authorization: token },
   });
   clearList('table-body');
@@ -116,7 +116,7 @@ window.addEventListener("DOMContentLoaded", async () => {
     localStorage.setItem('rowLimit', limit);
     console.log(limit);
     const page = 1;
-  const res = await axios.get(`http://localhost:3000/expense/get-expense?page=${page}&limit=${localStorage.getItem('rowLimit')}`, {
+  const res = await axios.get(`https://finance-tracker-6m0j.onrender.com/expense/get-expense?page=${page}&limit=${localStorage.getItem('rowLimit')}`, {
       headers: { Authorization: token },
     })
     console.log("Hello, is this line working");
@@ -147,7 +147,7 @@ async function deleteExpense(id) {
   try{
     console.log(id);
   const token = localStorage.getItem("id");
-  const res = await axios.delete(`http://localhost:3000/expense/delete-expense/${id}`, {
+  const res = await axios.delete(`https://finance-tracker-6m0j.onrender.com/expense/delete-expense/${id}`, {
       headers: { Authorization: token },
     })
       removeFromScreen(id);
@@ -163,7 +163,7 @@ function removeFromScreen(id) {
 
 document.getElementById("rzp-btn").onclick = async function (e) {
   const token = localStorage.getItem("id");
-  const response = await axios.get("http://localhost:3000/purchase/premiummembership",
+  const response = await axios.get("https://finance-tracker-6m0j.onrender.com/purchase/premiummembership",
     {
       headers: {
         Authorization: token,
@@ -177,7 +177,7 @@ document.getElementById("rzp-btn").onclick = async function (e) {
     'handler': async function x(response) {
       console.log("Checking!!! is it working");
       const res = await axios.post(
-        "http://localhost:3000/purchase/updatetransactionstatus",
+        "https://finance-tracker-6m0j.onrender.com/purchase/updatetransactionstatus",
         {
           order_id: options.order_id,
           payment_id: response.razorpay_payment_id,
@@ -208,7 +208,7 @@ document.getElementById("rzp-btn").onclick = async function (e) {
 
 document.getElementById('leader-board').onclick = async function(){
   try{
-    const res = await axios.get("http://localhost:3000/premium/leaderboard");
+    const res = await axios.get("https://finance-tracker-6m0j.onrender.com/premium/leaderboard");
     const leaderboardData = res.data.expenseLeaderboard;
     clearList('leaderboard-table-body');
     for (let i = 0; i < leaderboardData.length; i++) {
@@ -231,7 +231,7 @@ function showLeaderboardOnScreen(data) {
 
 async function download(){
   const token = localStorage.getItem("id");
-  const response = await axios.get('http://localhost:3000/expense/download', { headers: {"Authorization" : token} });
+  const response = await axios.get('https://finance-tracker-6m0j.onrender.com/expense/download', { headers: {"Authorization" : token} });
       if(response.status === 200){
           var a = document.createElement("a");
           a.href = response.data.fileUrl;
